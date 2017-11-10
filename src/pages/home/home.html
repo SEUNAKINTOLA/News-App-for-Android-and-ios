@@ -1,0 +1,38 @@
+ <!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>  -->
+
+<ion-content>
+
+  <div style="margin-top:80px" text-center *ngIf="!active && !show">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div style="margin-top:180px"  text-center *ngIf="active && !show">
+    <p>There is no internet connection try again</p>
+    <button ion-button color="fire" (click)="getNews(id)">Reload</button>
+  </div>
+  <ion-list *ngIf="active && show">
+     <ion-refresher (ionRefresh)="getFreshNews($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    <ion-item *ngFor='let item of lists' tappable (click)="showNews(item.id)" text-wrap>
+      <ion-thumbnail item-start>
+        <img src="{{item._embedded['wp:featuredmedia'][0].source_url}}"/>
+      </ion-thumbnail>
+      <h2 [innerHTML]='item.title.rendered'></h2>
+      <!-- <p [innerHTML] = 'item.excerpt.rendered | slice:0:100'></p> -->
+      <p>
+        {{item.date | date: 'MMMM dd, yyyy'}}<span *ngIf = "item._embedded['replies']"> | {{item._embedded['replies'][0].length}} Comment(s) </span> <span *ngIf = "!item._embedded['replies']"> | 0 Comment </span>
+      </p>
+      <!-- <button ion-button clear item-end>View</button> -->
+    </ion-item>
+    <ion-infinite-scroll (ionInfinite)="getFreshNews($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+</ion-content>

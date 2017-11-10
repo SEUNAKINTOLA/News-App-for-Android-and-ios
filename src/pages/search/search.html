@@ -1,0 +1,56 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-input type="search" placeholder="Type here..." [(ngModel)]="search" class="searchbox"></ion-input>
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+			  <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="searchItem(search)">
+			  <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons> 
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <div style="margin-top:80px" text-center *ngIf="pic">
+        <img src="assets/icon.png" width="40"/>
+      </div>
+      <div style="margin-top:80px" text-center *ngIf="!active && !show && !pic">
+        <ion-spinner></ion-spinner>
+      </div>
+      <div style="margin-top:180px"  text-center *ngIf="active && !show && !pic">
+        <p>There is no internet connection try again</p>
+        <!-- <button ion-button color="fire" (click)="getNews()">Reload</button> -->
+      </div>
+      <ion-list *ngIf="active && show && !pic">
+          <ion-list-header>{{result}} result(s) for "<span [innerHTML]='(term | highlight: search)'></span>"</ion-list-header>
+         
+        <ion-item *ngFor='let item of lists' tappable (click)="showNews(item.id)" text-wrap>
+          <ion-thumbnail item-start>
+            <img src="{{item._embedded['wp:featuredmedia'][0].source_url}}"/>
+          </ion-thumbnail>
+          <h2 [innerHTML]='item.title.rendered | highlight: search'></h2>
+          <!-- <p [innerHTML] = 'item.excerpt.rendered | highlight: search | slice:0:100'></p> -->
+          <p>
+            {{item.date | date: 'MMMM dd, yyyy'}}<span *ngIf = "item._embedded['replies']"> | {{item._embedded['replies'][0].length}} Comment(s) </span> <span *ngIf = "!item._embedded['replies']"> | 0 Comment </span>
+          </p>
+          <!-- <button ion-button clear item-end>View</button> -->
+        </ion-item>
+      
+      </ion-list>
+
+</ion-content>
