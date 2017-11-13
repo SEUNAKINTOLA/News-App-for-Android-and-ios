@@ -1,4 +1,4 @@
-This is a template for building a neat new app with [Ionic](http://ionicframework.com/docs/).
+This is a template for building a neat news app with [Ionic](http://ionicframework.com/docs/).
 
 ## How to use this template
 
