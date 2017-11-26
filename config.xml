@@ -3,6 +3,9 @@
     <name>TechNtrending</name>
     <description>TechNtrending News app</description>
     <author email="akinsehun@gmail.com" href="#">Akintola Oluwaseun</author>
+        <vs:template-name>BlankJS</vs:template-name>
+    <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
+
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -13,6 +16,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="orientation" value="portrait" />
+    <preference name="windows-target-version" value="10.0" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -86,6 +90,7 @@
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
     </platform>
     <engine name="android" spec="^6.2.3" />
+    <engine name="windows" spec="~5.0.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
