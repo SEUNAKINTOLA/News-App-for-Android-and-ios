@@ -11,6 +11,8 @@ To run it, cd into `mynews` and run:
 ```bash
 $ ionic cordova platform add ios
 $ ionic cordova run ios
+$ ionic cordova platform add windows
+$ ionic cordova run windows
 ```
 
 Substitute ios for android if not on a Mac.
